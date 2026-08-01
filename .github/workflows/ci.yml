@@ -31,7 +31,7 @@ jobs:
           python-version: "3.12"
 
       - name: Install runtime (editable)
-        run: pip install -e ./runtime
+        run: pip install -e './runtime[dev]'
 
-      - name: Runtime import smoke
-        run: python -c "from p99_runtime.server import app; print(app.title)"
+      - name: Runtime tests
+        run: pytest runtime/tests -q
