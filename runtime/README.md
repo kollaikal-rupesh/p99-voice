@@ -2,8 +2,8 @@
 
 Local open-source voice runtime for the [P99 protocol](../docs/protocol.md).
 
-Speaks the same WebSocket contract as hosted P99 infra, so the browser client
-(`@p99labs/voice`) works unchanged.
+Speaks the same WebSocket contract as the hosted P99 runtime, so the browser
+client (`@p99labs/voice`) works unchanged.
 
 ## Quick start
 
@@ -13,9 +13,10 @@ pip install -e .
 p99-runtime serve --port 8787
 ```
 
-Echo / stub mode works with **zero models** — useful to verify the client
-pipeline (mic → WS → PCM playback). Wire real ASR/LLM/TTS by setting env
-backends (see below).
+Stub mode works with **zero models** — useful to verify the client pipeline
+(mic → WS → PCM playback). To run real models, replace `handle_turn` in
+`p99_runtime/server.py` with your ASR → LLM → TTS (or S2S) stack; keep the
+[protocol](../docs/protocol.md) events and the client stays unchanged.
 
 ## Endpoints
 
@@ -25,14 +26,17 @@ backends (see below).
 | `GET /config` | Mic/TTS sample rates for the client |
 | `WS /ws` | Voice session (JSON control + binary PCM) |
 
-## Paid upgrade
+The server binds `127.0.0.1` by default. Pass `--host 0.0.0.0` only when
+you have TLS and auth in front (see [self-host notes](../docs/self-host.md)).
 
-When local GPU is not enough:
+## Tests
 
 ```bash
-# same client
-P99_RUNTIME_URL=wss://runtime.p99lab.com/v1/ws
-P99_API_KEY=pk_live_...
+pip install -e '.[dev]'
+pytest
 ```
 
-You are selling **infra**, not the SDK.
+## Hosted runtime (coming soon)
+
+P99 will offer a managed GPU runtime speaking this same protocol — swap the
+URL, add an API key, no client changes. Watch the repo for availability.

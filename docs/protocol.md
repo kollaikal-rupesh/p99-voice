@@ -1,7 +1,7 @@
 # P99 Voice Protocol
 
 Stable contract between `@p99labs/voice` (client) and any runtime
-(`p99-runtime` locally, or `runtime.p99lab.com` hosted).
+(`p99-runtime` locally today; hosted P99 cloud coming soon).
 
 **Transport:** WebSocket  
 **Binary:** raw PCM int16 little-endian mono  

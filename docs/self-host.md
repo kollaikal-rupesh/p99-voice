@@ -15,10 +15,12 @@ new VoiceClient({ url: "ws://localhost:8787/ws" });
 
 ## Production notes
 
+- The server binds `127.0.0.1` by default. Pass `--host 0.0.0.0` only
+  behind a reverse proxy with TLS and auth.
 - Terminate TLS at a reverse proxy (`wss://`).
 - Do not expose an unauthenticated runtime on the public internet.
-- For multi-tenant auth, quotas, and autoscaling GPUs, use P99 hosted infra
-  instead of reinventing the control plane.
+- For multi-tenant auth, quotas, and autoscaling GPUs, P99's hosted runtime
+  (coming soon) will handle the control plane for you.
 
 ## Next: real models
 

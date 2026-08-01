@@ -1,10 +1,13 @@
 # p99-voice
 
-**Open-source voice agent SDK. Sell the infra.**
+[![CI](https://github.com/kollaikal-rupesh/p99-voice/actions/workflows/ci.yml/badge.svg)](https://github.com/kollaikal-rupesh/p99-voice/actions/workflows/ci.yml)
 
-Build real-time voice agents without wrestling mic VAD, barge-in, streaming
-playback, or turn telemetry. Run free on your machine. When you need GPUs,
-SLAs, or on-prem data residency — point the same client at P99.
+**Open-source SDK for real-time browser voice agents.**
+
+Build voice agents without wrestling mic VAD, barge-in, streaming playback,
+or turn telemetry. Runs free against a local runtime you control. When you
+need GPUs, SLAs, or on-prem data residency, the same client will point at
+P99's managed cloud (coming soon).
 
 ```bash
 npx @p99labs/create-voice-agent my-agent
@@ -14,24 +17,14 @@ cd my-agent && npm install && npm run dev
 ```ts
 import { VoiceClient } from "@p99labs/voice";
 
-const client = new VoiceClient({
-  // local free runtime
-  url: "ws://localhost:8787/ws",
-  // or hosted: wss://runtime.p99lab.com/v1/ws + apiKey
-});
-
-client.onState = undefined; // use events object — see below
-await client.connect();
-```
-
-```ts
 const client = new VoiceClient(
+  // local free runtime — or P99 cloud (coming soon) via wss URL + apiKey
   { url: "ws://localhost:8787/ws" },
   {
     onState: console.log,
     onTranscript: (t) => console.log("user:", t),
     onAssistantChunk: (t) => console.log("agent:", t),
-    onStats: (s) => console.log("turn p99-ish:", s.total_turn_ms),
+    onStats: (s) => console.log("turn:", s.total_turn_ms, "ms"),
   },
 );
 await client.connect();
@@ -57,7 +50,7 @@ await client.connect();
    │  VoiceClient  │   WS + PCM + JSON      │  local or P99 cloud│
    └───────────────┘                        └────────────────────┘
                                                      │
-                              OSS: your GPU / stub   │   Paid: runtime.p99lab.com
+                              OSS: your GPU / stub   │   Paid: P99 cloud (soon)
                               fine-tune recipes      │   on-prem appliance
 ```
 
