@@ -1,0 +1,26 @@
+{
+  "name": "@p99labs/create-voice-agent",
+  "version": "0.1.0",
+  "description": "Scaffold a P99 voice agent app in one command",
+  "type": "module",
+  "bin": {
+    "create-voice-agent": "./bin/create-voice-agent.js"
+  },
+  "files": [
+    "bin",
+    "template"
+  ],
+  "scripts": {
+    "build": "node -e \"process.exit(0)\""
+  },
+  "keywords": [
+    "voice",
+    "scaffold",
+    "create",
+    "p99"
+  ],
+  "license": "Apache-2.0",
+  "publishConfig": {
+    "access": "public"
+  }
+}

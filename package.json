@@ -1,0 +1,24 @@
+{
+  "name": "p99-voice",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Open-source voice agent SDK. Build voice models free. Run them on P99 infra when you need scale.",
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "npm run build -w @p99labs/protocol && npm run build -w @p99labs/voice && npm run build -w @p99labs/create-voice-agent",
+    "typecheck": "npm run typecheck -w @p99labs/protocol && npm run typecheck -w @p99labs/voice",
+    "test": "npm run test -w @p99labs/voice --if-present"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kollaikal-rupesh/p99-voice.git"
+  },
+  "author": "P99 Labs",
+  "homepage": "https://p99lab.com"
+}

@@ -1,0 +1,48 @@
+{
+  "name": "@p99labs/voice",
+  "version": "0.1.0",
+  "description": "Browser voice client for P99 — mic VAD, barge-in, streaming PCM, same API for local or cloud runtime",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit"
+  },
+  "keywords": [
+    "voice",
+    "speech",
+    "vad",
+    "realtime",
+    "p99",
+    "ai-agent"
+  ],
+  "license": "Apache-2.0",
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@p99labs/protocol": "0.1.0",
+    "@ricky0123/vad-web": "^0.0.24"
+  },
+  "devDependencies": {
+    "typescript": "^5.6.0"
+  },
+  "peerDependencies": {
+    "onnxruntime-web": "^1.20.0"
+  },
+  "peerDependenciesMeta": {
+    "onnxruntime-web": {
+      "optional": true
+    }
+  }
+}
