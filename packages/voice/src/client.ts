@@ -161,7 +161,7 @@ export class VoiceClient {
       if (this.reconnectAttempt === 0) {
         this.events.onError?.(
           "connection",
-          `couldn't reach the runtime at ${this.url}. Start local runtime with \`p99-runtime serve\` or set P99_RUNTIME_URL.`,
+          `couldn't reach the runtime at ${this.url}. Is it running? Start a local one with \`p99-runtime serve\`.`,
         );
       }
     });
