@@ -4,7 +4,7 @@
   "description": "Scaffold a P99 voice agent app in one command",
   "type": "module",
   "bin": {
-    "create-voice-agent": "./bin/create-voice-agent.js"
+    "create-voice-agent": "bin/create-voice-agent.js"
   },
   "files": [
     "bin",
