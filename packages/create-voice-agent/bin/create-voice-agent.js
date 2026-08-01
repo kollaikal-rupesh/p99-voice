@@ -5,7 +5,14 @@
  * Copies a minimal Vite + TypeScript template wired to @p99labs/voice.
  */
 
-import { cpSync, existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
+import {
+  cpSync,
+  existsSync,
+  mkdirSync,
+  readFileSync,
+  renameSync,
+  writeFileSync,
+} from "node:fs";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -29,6 +36,13 @@ const pkg = JSON.parse(readFileSync(pkgPath, "utf8"));
 pkg.name = name;
 writeFileSync(pkgPath, JSON.stringify(pkg, null, 2) + "\n");
 
+// npm strips .gitignore from published packages, so the template ships
+// _gitignore and we rename it here.
+const gitignorePath = join(target, "_gitignore");
+if (existsSync(gitignorePath)) {
+  renameSync(gitignorePath, join(target, ".gitignore"));
+}
+
 console.log(`
   ✓  Created ${name}
 
@@ -40,12 +54,11 @@ console.log(`
 
   Runtime (separate terminal):
 
-    # local OSS (when p99-runtime is installed)
+    # local OSS runtime — see the repo's /runtime for install
     p99-runtime serve --port 8787
 
-    # or point at hosted P99 infra
-    export P99_RUNTIME_URL=wss://runtime.p99lab.com/v1/ws
-    export P99_API_KEY=pk_live_...
+    # hosted P99 cloud is coming soon — when live, set
+    # VITE_P99_RUNTIME_URL + VITE_P99_API_KEY in .env (see .env.example)
 
   Docs: https://github.com/kollaikal-rupesh/p99-voice
 `);

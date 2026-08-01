@@ -10,11 +10,11 @@
   },
   "dependencies": {
     "@p99labs/voice": "^0.1.0",
-    "@ricky0123/vad-web": "^0.0.24",
-    "onnxruntime-web": "^1.20.0"
+    "@ricky0123/vad-web": "^0.0.24"
   },
   "devDependencies": {
     "typescript": "^5.6.0",
-    "vite": "^6.0.0"
+    "vite": "^6.0.0",
+    "vite-plugin-static-copy": "^4.0.0"
   }
 }

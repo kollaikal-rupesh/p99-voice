@@ -12,14 +12,14 @@ npm run dev
 In another terminal, start a runtime that speaks the [P99 protocol](https://github.com/kollaikal-rupesh/p99-voice/blob/main/docs/protocol.md):
 
 ```bash
-# local
 p99-runtime serve --port 8787
-
-# or hosted
-export VITE_P99_RUNTIME_URL=wss://runtime.p99lab.com/v1/ws
-export VITE_P99_API_KEY=pk_live_...
 ```
+
+Hosted P99 cloud is coming soon — when it's live, point at it by setting
+`VITE_P99_RUNTIME_URL` and `VITE_P99_API_KEY` in `.env` (see `.env.example`).
 
 ## VAD assets
 
-Copy Silero VAD + onnxruntime WASM into `public/voice/` (paths expected by the client’s `vadAssetPath`, default `/voice/`). See the monorepo docs.
+Silero VAD models and onnxruntime WASM are copied automatically from
+`node_modules` to `/voice/` on `dev` and `build` (see `vite.config.ts`) —
+no manual setup needed.
