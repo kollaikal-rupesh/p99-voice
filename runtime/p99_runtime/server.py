@@ -12,6 +12,7 @@ from __future__ import annotations
 import asyncio
 import json
 import logging
+import math
 import struct
 import time
 from contextlib import asynccontextmanager
@@ -84,8 +85,6 @@ def _silence_pcm(duration_s: float, sample_rate: int = TTS_SAMPLE_RATE) -> bytes
     frames = []
     for i in range(n):
         # 440Hz sine at very low amplitude
-        import math
-
         sample = int(800 * math.sin(2 * math.pi * 440 * i / sample_rate))
         frames.append(struct.pack("<h", max(-32767, min(32767, sample))))
     return b"".join(frames)
