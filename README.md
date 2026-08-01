@@ -57,8 +57,7 @@ await client.connect();
 ## Local runtime
 
 ```bash
-cd runtime
-pip install -e .
+pip install p99-runtime
 p99-runtime serve --port 8787
 ```
 

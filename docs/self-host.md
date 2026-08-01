@@ -1,11 +1,12 @@
 # Self-host the runtime
 
 ```bash
-cd runtime
 python -m venv .venv && source .venv/bin/activate
-pip install -e .
+pip install p99-runtime
 p99-runtime serve --port 8787
 ```
+
+(Or from a repo checkout: `pip install -e ./runtime`.)
 
 Point the client:
 
